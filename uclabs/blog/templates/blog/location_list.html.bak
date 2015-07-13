@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %}
+
+{% block call-to-action %}
+{% endblock call-to-action %}
+
+{% block content %}
+
+{% if locations %}
+
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Building</th>
+        <th>Open Time</th>
+        <th>Close Time</th>
+    </tr>
+{% for location in locations %}
+    <tr>
+        <td>{{ location.name }}</td>
+        <td>{{ location.building }}</td>
+        {% ifequal location.open_time.time location.close_time.time %}
+        <td colspan="2" class="text-center">Open 24 Hours</td>
+        {% else %}
+        <td>{{ location.open_time.time }}</td>
+        <td>{{ location.close_time.time }}</td>
+        {% endifequal %}
+    </tr>
+
+{% endfor %}
+</table>
+{% else %}
+locations object not loaded
+
+{% endif %}
+
+{% endblock content %}

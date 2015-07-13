@@ -1,0 +1,42 @@
+{% extends 'blog/base.html' %}
+
+<!doctype html>
+	    {% block title %}UCIT Computer Labs | Home{% endblock title %} 
+
+        <body>
+		<div class="container content-wrapper">
+			<div class="row">
+                <div class="content">
+                <div class="col-xs-12 col-sm-10">
+                    {% block content %}
+                    <h2>NEWS</h2>      
+                    <hr class="heading">
+                    {% for post in recent_blog_posts %}
+                    <article class="post-wrapper">
+                        <h3 class="post-title">{{ post.post_title  }}</h3>
+                        <div class="post-body">{{ post.post_content }}</div>
+                        <br>
+                        <div class="post-meta">Posted By:{{ post.author  }} on  {{ post.pub_date }}</div>
+                    <hr class="divider">
+                    </article>
+                    {% endfor %}
+                    {% endblock content %}
+                    
+                    
+                    
+                    
+                
+                
+                </div>
+            </div>
+			</div>
+        </div>
+        <footer class="container-fluid text-center">
+            <div class="col-sm-4">Footer Area 1</div>
+            <div class="col-sm-4">Footer Area 2</div>
+            <div class="col-sm-4">Footer Area 3</div>
+        </footer>
+
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	</body>	

@@ -1,0 +1,59 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+{% if locations %}
+
+<h3>Hardware</h3>
+
+<p>The computer labs are equipped with cutting edge hardware to help you get your work done faster.</p>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Lab</th>
+        <th>Device</th>
+        <th>Type</th>
+        <th>Model</th>
+        <th>Quantity</th>
+        <th>Speed</th>
+        <th>Memory</th>
+        <th>Comments</th>
+    </tr>
+    {% for location in locations %}
+    <tr>
+        <td rowspan="{{ location.lab_printers.count|add:"2" }}">{{ location.name  }}</td>
+        <td>Computer</td>
+        <td>{{ location.computer.computer_model.brand  }}</td>
+        <td>{{ location.computer.computer_model.model_num  }}</td>
+        <td>{{ location.computer_quantity  }}</td>
+        <td>{{ location.computer.computer_speed  }}</td>
+        <td>{{ location.computer.computer_memory  }} GB</td>
+        <td>{{ location.computer.computer_comment  }}</td>
+    </tr>
+        {% for printer in location.lab_printers.all %}
+    <tr>
+        <td rowspan="{{ location.lab_printers.count|add:"1" }}">Printer</td>
+        <td>{{ location.printer.printer_model.brand }}</td>
+        <td>{{ location.printer.printer_model.model_num }}</td>
+        <td>{{ location.printer_quantity }}</td>
+        <td></td>
+        <td></td>
+        <td>{{ location.printer.printer_comment  }}</td>
+    </tr>
+        {% endfor %}
+    {% endfor  %}
+</table>
+
+<h3>Software</h3>
+{% else %}
+
+context object not loaded
+
+{% endif %}
+{% for location in locations %}
+{% if location.lab_printers %}
+{{ location.lab_printers.count|add:"1"  }}
+{% endif %}
+
+{% endfor %}
+
+{% endblock content %}

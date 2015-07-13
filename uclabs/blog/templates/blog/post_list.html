@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+
+	    {% block title %}UCIT Computer Labs | Home{% endblock title %} 
+
+                    {% block content %}
+                    <h2>NEWS</h2>      
+                    <hr class="heading">
+                    {% if recent_blog_posts %}
+
+                    {% for post in recent_blog_posts %}
+                    <article class="post-wrapper">
+                        <h3 class="post-title">{{ post.post_title  }}</h3>
+                        <div class="post-body">{{ post.post_content }}</div>
+                        <br>
+                        <div class="post-meta">Posted By:{{ post.author  }} on  {{ post.pub_date }}</div>
+                    <hr class="divider">
+                    </article>
+                    {% endfor %}
+                    {% else %}
+                    <p>No posts to show</p>
+                    {% endif %}
+
+                    {% endblock content %}

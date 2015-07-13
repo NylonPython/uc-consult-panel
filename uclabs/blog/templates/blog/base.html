@@ -1,0 +1,145 @@
+<!doctype html>
+    {% load staticfiles %}
+    {% block head %}
+<html>
+	<head>
+        <title>{% block title %}UCIT Computer Lab{% endblock title %}</title>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static "html-templates/css/style.css"  %}">
+        {% block extra_head %}
+        {% endblock %}
+	</head>
+    {% endblock head %}
+	<body>
+        <div class="container-fluid header-wrapper">
+            <header class="container">
+            
+            <div class="row">
+                <div class="col-md-4 visible-xs visible-sm"><img class="img-responsive center-block" src="{% static "html-templates/images/uclogo.png" %}" alt="UCIT Logo"/></div>
+                <div class="col-md-4 hidden-xs hidden-sm"><img class="img-responsive" src="{% static "html-templates/images/uclogo.png"  %}" alt="UCIT Logo"/></div>
+                <div class="col-md-4 text-center"><h1 class="site-headline">UCIT Computer Labs</h1></div>
+                <div align="" class="col-md-4 ucit-logo hidden-sm hidden-xs"><img class="img-responsive pull-right" src="{% static "html-templates/images/ucitlogo.png" %}" alt="UCIT Logo"/></div>
+            
+            </div>
+            </header>
+			<!--<div class="row">
+				<div class=""></div>
+			</div>-->
+		
+        </div>
+
+    {% block call-to-action %}
+		<div id="carousel-example-generic" class="carousel slide hidden-xs" data-ride="carousel">
+  			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+			</ol>
+
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner" role="listbox">
+				<div class="item active">
+					<img src="http://law.uc.edu/sites/default/files/uc%201.png" alt="..." style="height:400px !important; width:100% !important;">
+					<div class="carousel-caption">
+					Image 1
+					</div>
+				</div>
+				<!--<div class="item">
+					<img src="..." alt="...">
+					<div class="carousel-caption">
+					Image 2
+					</div>
+				</div>
+				<div class="item">
+					<img src="..." alt="...">
+					<div class="carousel-caption">
+					Image 3
+					</div>
+                </div>-->
+			
+			</div>
+
+			<!-- Controls -->
+			<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+        {% endblock call-to-action %}
+        {% block navbar  %}
+        <div class="container-fluid inline-nav">
+			<div class="container text-center">
+				
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <span class="navbar-brand hidden-sm hidden-md hidden-lg">Menu</span>
+                    </div>
+                            <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse text-center" id="bs-example-navbar-collapse-1">
+                            {% block inline-nav %}
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="{% url 'blog:index'  %}">Home<span class="sr-only">(current)</span></a></li>
+                                <li class="active"><a href="{% url 'locations:locations' %}">Locations<span class="sr-only">(current)</span></a></li>
+                                <li class="active"><a href="{% url 'resources:resources' %}">Resources<span class="sr-only">(current)</span></a></li> 
+                                <li class="active"><a href="">Group Study Rooms<span class="sr-only">(current)</span></a></li>
+                                
+                            </ul>
+                            {% endblock inline-nav %}
+                        </div>
+                </div>    
+			</div>
+		</div>
+        {% endblock navbar %}
+        <div class="container-fluid content-wrapper">
+        <div class="container">
+			<div class="row">
+                <div class="content">
+                <div class="col-xs-12 col-sm-10">
+                    {% block content %}
+                    This is where the content goes.
+                    {% endblock content %}
+                    
+                    
+                    
+                
+                
+                </div>
+                <aside class="col-sm-2 hidden-xs side-nav">
+                    <div data-spy="affix" data-offset-top="600">
+					    
+                {% block sidebar %}
+					    <ul class="list list-unstyled">  
+                            <li><a href="{% url 'blog:index'  %}" class="active">NEWS</a></li>
+                            <li><a href="{% url 'locations:locations'  %}">LOCATIONS</a></li>
+                            <li><a href="{% url 'resources:resources'  %}">RESOURCES</a></li>
+                            <li><a href="./">POLICIES</a></li>
+                            <li><a href="{% url 'blog:index' %}schedule/all/week">GROUP STUDY ROOMS</a></li>
+                        </ul>                  
+                {% endblock sidebar %}
+                    </div>
+                </aside>
+            </div>
+			</div>
+        </div>
+        </div>
+        <footer class="container-fluid text-center">
+            <div class="col-sm-4">Footer Area 1</div>
+            <div class="col-sm-4">Footer Area 2</div>
+            <div class="col-sm-4">Footer Area 3</div>
+        </footer>
+
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	</body>	

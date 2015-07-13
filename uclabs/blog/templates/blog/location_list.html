@@ -1,0 +1,83 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+{% if locations %}
+    Open Labs:
+    <table class="table table-bordered">
+        <tr>
+            <th>Name</th>
+            <th>Building</th>
+            <th>Open Time</th>
+            <th>Close Time</th>
+        </tr>
+        {% for location in locations %}
+            {% ifequal location.lab_type 0 %}
+            <tr>          
+                <td>{{location.name}}</td>
+                <td>{{location.building}}</td>
+                {% ifequal location.open_time.time location.close_time.time %}
+                <td colspan="2" class="text-center">Open 24 Hours</td>
+                {% else %}
+                <td>{{location.open_time.time}}</td>
+                <td>{{location.close_time.time}}</td>
+                {% endifequal %}
+            </tr>
+
+            {% endifequal %}
+        {% endfor %}
+    </table>
+    Affiliate Labs:
+    <table class="table table-bordered">
+        <tr>
+            <th>Name</th>
+            <th>Building</th>
+            <th>Open Time</th>
+            <th>Close Time</th>
+        </tr>
+        {% for location in locations %}
+            {% ifequal location.lab_type -1 %}
+            <tr>
+                <td>{{location.name}}</td>    
+                <td>{{location.building}}</td>    
+                {% ifequal location.open_time.time location.close_time.time %}
+                <td colspan="2" class="text-center">Open 24 Hours</td>
+                {% else %}
+                <td>{{location.open_time.time}}</td>    
+                <td>{{location.close_time.time}}</td>    
+                {% endifequal %}
+            </tr>
+            {% endifequal %}
+        {% endfor %}
+    </table>
+    Classroom Labs: The following classroom can be reserved for instructional use. Please call 556-HELP for more information.
+    <table class="table table-bordered">
+        <tr>
+            <th>Name</th>
+            <th>Building</th>
+            <th>Open Time</th>
+            <th>Close Time</th>
+        </tr>
+        {% for location in locations %}
+            {% ifequal location.lab_type 1 %}
+            <tr>
+                <td>{{location.name}}</td>
+                <td>{{location.building}}</td>
+                {% ifequal location.open_time.time location.close_time.time %}
+                <td colspan="2" class="text-center">Open 24 Hours</td>
+                {% else %}
+                <td>{{location.open_time.time}}</td>
+                <td>{{location.close_time.time}}</td>
+                {% endifequal %}
+            </tr>
+            {% endifequal %}
+        {% endfor %}
+    
+    </table>
+
+
+
+
+{% endif %}
+
+{% endblock content %}
